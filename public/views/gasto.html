@@ -1,0 +1,103 @@
+<div class="vista-moderna">
+
+    <div class="page-head container">
+        <h2>Registros</h2>
+        <span class="page-sub" id="contadorGastos"></span>
+    </div>
+
+    <!-- FORMULARIO: solo aparece al editar un gasto -->
+    <div class="container d-none" id="contenedorFormulario">
+        <h3 class="form-titulo">Editar gasto</h3>
+
+        <form id="formGasto">
+            <input type="hidden" id="pk_gasto">
+
+            <div class="mb-3">
+                <label class="form-label" for="nombre_gasto">Nombre del gasto</label>
+                <input type="text" id="nombre_gasto" class="form-control" maxlength="150" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="fk_categoria">Categoría (opcional)</label>
+                <select id="fk_categoria" class="form-select">
+                    <option value="">Sin categoría</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-6 col-md-4 mb-3">
+                    <label class="form-label" for="cantidad">Cantidad</label>
+                    <input type="number" id="cantidad" class="form-control" inputmode="decimal" step="0.01" min="0" max="99999999.99">
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <label class="form-label" for="precio">Precio</label>
+                    <input type="number" id="precio" class="form-control" inputmode="decimal" step="0.01" min="0" max="99999999.99">
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                    <label class="form-label" for="total">Total</label>
+                    <input type="number" id="total" class="form-control" inputmode="decimal" step="0.01" min="0" max="99999999.99" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Descripción (opcional)</label>
+                <input type="text" id="description" class="form-control" maxlength="255">
+            </div>
+
+            <div class="form-botones">
+                <button type="button" class="btn btn-outline-secondary" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+                <button type="submit" class="btn btn-success btn-guardar">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTADO de registros (más recientes primero) -->
+    <div class="container" id="contenedorTabla">
+
+        <!-- Búsqueda y filtro por día -->
+        <div class="g-barra">
+            <div class="g-buscar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" id="buscarGasto" class="form-control" placeholder="Buscar gasto, categoría o descripción"
+                       autocomplete="off" enterkeyhint="search" aria-label="Buscar gastos">
+                <button type="button" id="btnLimpiarBusqueda" class="g-buscar-x d-none" aria-label="Borrar búsqueda">&times;</button>
+            </div>
+
+            <div class="g-filtros" role="group" aria-label="Filtrar por día">
+                <button type="button" class="g-chip activo" data-filtro="hoy">Hoy</button>
+                <label class="g-fecha" id="wrapFecha">
+                    <span>Día</span>
+                    <input type="date" id="filtroFecha" aria-label="Elegir un día">
+                </label>
+            </div>
+        </div>
+
+        <div id="listaGastos" class="g-lista"></div>
+
+        <div id="vacioGastos" class="g-vacio d-none">
+            <div class="g-vacio-ico">$</div>
+            <p id="vacioTitulo"></p>
+            <small id="vacioTexto"></small>
+            <button type="button" id="btnVerHoy" class="g-vacio-btn d-none">Ver hoy</button>
+        </div>
+
+        <button type="button" id="btnMas" class="btn-mas d-none">
+            Cargar más registros <span id="restantes"></span>
+        </button>
+    </div>
+
+    <!-- VENTANA DE CONFIRMACIÓN (desactivar / eliminar) -->
+    <div id="modalConfirm" class="g-modal" role="alertdialog" aria-modal="true"
+         aria-labelledby="mcTitulo" aria-describedby="mcTexto" data-tipo="aviso">
+        <div class="g-modal-card">
+            <div class="g-modal-ico" id="mcIcono"></div>
+            <h3 class="g-modal-titulo" id="mcTitulo"></h3>
+            <p class="g-modal-texto" id="mcTexto"></p>
+            <div class="g-modal-botones">
+                <button type="button" class="g-modal-cancelar" id="mcCancelar">Cancelar</button>
+                <button type="button" class="g-modal-aceptar" id="mcAceptar"></button>
+            </div>
+        </div>
+    </div>
+
+</div>

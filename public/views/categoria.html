@@ -1,0 +1,74 @@
+<div class="vista-moderna">
+
+    <div class="page-head container">
+        <h2>Categorías</h2>
+        <button type="button" class="btn btn-success" id="btnNueva">+ Nueva categoría</button>
+    </div>
+
+    <!-- FORMULARIO para crear/editar categoría -->
+    <div class="container d-none" id="contenedorFormulario">
+        <h3 class="form-titulo" id="tituloFormulario">Nueva categoría</h3>
+
+        <form id="formCategoria">
+            <!-- Campo oculto para el ID al editar -->
+            <input type="hidden" id="pk_categoria">
+
+            <div class="mb-3">
+                <label class="form-label" for="nombre_categoria">Nombre de la categoría</label>
+                <input type="text" id="nombre_categoria" class="form-control" maxlength="100"
+                       autocomplete="off" required>
+            </div>
+
+            <div class="form-botones">
+                <button type="button" class="btn btn-outline-secondary" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+                <button type="submit" class="btn btn-success btn-guardar">Guardar categoría</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTADO de categorías -->
+    <div class="container" id="contenedorTabla">
+
+        <!-- Buscador -->
+        <div class="g-barra">
+            <div class="g-buscar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" id="buscarCategoria" class="form-control" placeholder="Buscar categoría"
+                       autocomplete="off" enterkeyhint="search" aria-label="Buscar categorías">
+                <button type="button" id="btnLimpiarBusqueda" class="g-buscar-x d-none" aria-label="Borrar búsqueda">&times;</button>
+            </div>
+        </div>
+
+        <div class="g-dia">
+            <span class="g-dia-nombre">Categorías activas</span>
+            <span class="g-dia-total" id="contadorCategorias"></span>
+        </div>
+
+        <div id="listaCategorias" class="g-lista"></div>
+
+        <div id="vacioCategorias" class="g-vacio d-none">
+            <div class="g-vacio-ico">#</div>
+            <p id="vacioTitulo"></p>
+            <small id="vacioTexto"></small>
+        </div>
+
+        <button type="button" id="btnMas" class="btn-mas d-none">
+            Cargar más registros <span id="restantes"></span>
+        </button>
+    </div>
+
+    <!-- VENTANA DE CONFIRMACIÓN (desactivar / eliminar) -->
+    <div id="modalConfirm" class="g-modal" role="alertdialog" aria-modal="true"
+         aria-labelledby="mcTitulo" aria-describedby="mcTexto" data-tipo="aviso">
+        <div class="g-modal-card">
+            <div class="g-modal-ico" id="mcIcono"></div>
+            <h3 class="g-modal-titulo" id="mcTitulo"></h3>
+            <p class="g-modal-texto" id="mcTexto"></p>
+            <div class="g-modal-botones">
+                <button type="button" class="g-modal-cancelar" id="mcCancelar">Cancelar</button>
+                <button type="button" class="g-modal-aceptar" id="mcAceptar"></button>
+            </div>
+        </div>
+    </div>
+
+</div>

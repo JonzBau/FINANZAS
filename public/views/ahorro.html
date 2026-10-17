@@ -1,0 +1,96 @@
+<div class="vista-moderna">
+
+    <div class="page-head container">
+        <h2>Ahorro</h2>
+        <button type="button" class="btn btn-success" id="btnNueva">+ Nuevo ahorro</button>
+    </div>
+
+    <!-- FORMULARIO para crear/editar ahorro -->
+    <div class="container d-none" id="contenedorFormulario">
+        <h3 class="form-titulo" id="tituloFormulario">Nuevo ahorro</h3>
+
+        <form id="formAhorro">
+            <!-- Campo oculto para el ID al editar -->
+            <input type="hidden" id="pk_ahorro">
+
+            <div class="mb-3">
+                <label class="form-label" for="nombre_ahorro">Nombre del ahorro</label>
+                <input type="text" id="nombre_ahorro" class="form-control" maxlength="150"
+                       placeholder="Ej. Vacaciones, laptop, fondo de emergencia" autocomplete="off" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="monto">Monto a ahorrar (objetivo)</label>
+                <div class="input-group total-wrap">
+                    <span class="input-group-text">$</span>
+                    <input type="number" id="monto" class="form-control" inputmode="decimal"
+                           step="0.01" min="0" max="99999999.99" placeholder="0.00" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="ahorrado">Ya ahorrado (opcional)</label>
+                <input type="number" id="ahorrado" class="form-control" inputmode="decimal"
+                       step="0.01" min="0" max="99999999.99" placeholder="0.00">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="descripcion">Descripción (opcional)</label>
+                <input type="text" id="descripcion" class="form-control" maxlength="255"
+                       placeholder="Ej. Para el viaje de diciembre">
+            </div>
+
+            <div class="form-botones">
+                <button type="button" class="btn btn-outline-secondary" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+                <button type="submit" class="btn btn-success btn-guardar">Guardar ahorro</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTADO de ahorros (más recientes primero) -->
+    <div class="container" id="contenedorTabla">
+
+        <!-- Buscador -->
+        <div class="g-barra">
+            <div class="g-buscar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" id="buscarAhorro" class="form-control" placeholder="Buscar ahorro, descripción o monto"
+                       autocomplete="off" enterkeyhint="search" aria-label="Buscar ahorros">
+                <button type="button" id="btnLimpiarBusqueda" class="g-buscar-x d-none" aria-label="Borrar búsqueda">&times;</button>
+            </div>
+        </div>
+
+        <!-- Resumen: cantidad de ahorros y total ahorrado -->
+        <div class="g-dia">
+            <span class="g-dia-nombre" id="contadorAhorros">Mis ahorros</span>
+            <span class="g-dia-total" id="totalAhorros"></span>
+        </div>
+
+        <div id="listaAhorros" class="g-lista"></div>
+
+        <div id="vacioAhorros" class="g-vacio d-none">
+            <div class="g-vacio-ico">$</div>
+            <p id="vacioTitulo"></p>
+            <small id="vacioTexto"></small>
+        </div>
+
+        <button type="button" id="btnMas" class="btn-mas d-none">
+            Cargar más registros <span id="restantes"></span>
+        </button>
+    </div>
+
+    <!-- VENTANA DE CONFIRMACIÓN (desactivar / eliminar) -->
+    <div id="modalConfirm" class="g-modal" role="alertdialog" aria-modal="true"
+         aria-labelledby="mcTitulo" aria-describedby="mcTexto" data-tipo="aviso">
+        <div class="g-modal-card">
+            <div class="g-modal-ico" id="mcIcono"></div>
+            <h3 class="g-modal-titulo" id="mcTitulo"></h3>
+            <p class="g-modal-texto" id="mcTexto"></p>
+            <div class="g-modal-botones">
+                <button type="button" class="g-modal-cancelar" id="mcCancelar">Cancelar</button>
+                <button type="button" class="g-modal-aceptar" id="mcAceptar"></button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finanzas</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<!-- Tus estilos van después de Bootstrap para poder sobrescribirlo -->
+<link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+
+<!-- Iconos del menú (sprite SVG) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></symbol>
+    <symbol id="i-gasto" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
+    <symbol id="i-ahorro" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+    <symbol id="i-limite" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-categoria" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
+</svg>
+
+<!-- Barra superior -->
+<header class="brand">
+    <span class="logo">$</span>
+    <h1>Finanzas</h1>
+</header>
+
+<main id="contenido"></main>
+
+<!-- Menú inferior (móvil y computadora) -->
+<nav id="menu" aria-label="Menú principal">
+    <button type="button" data-vista="inicio" onclick="cargarVista('inicio')">
+        <span class="ico"><svg><use href="#i-plus"/></svg></span><span class="lbl">Nuevo</span>
+    </button>
+    <button type="button" data-vista="gasto" onclick="cargarVista('gasto')">
+        <span class="ico"><svg><use href="#i-gasto"/></svg></span><span class="lbl">Registros</span>
+    </button>
+    <button type="button" data-vista="categoria" onclick="cargarVista('categoria')">
+        <span class="ico"><svg><use href="#i-categoria"/></svg></span><span class="lbl">Categorías</span>
+    </button>
+    <button type="button" data-vista="ahorro" onclick="cargarVista('ahorro')">
+        <span class="ico"><svg><use href="#i-ahorro"/></svg></span><span class="lbl">Ahorro</span>
+    </button>
+    <button type="button" data-vista="limite_gasto" onclick="cargarVista('limite_gasto')">
+        <span class="ico"><svg><use href="#i-limite"/></svg></span><span class="lbl">Límite</span>
+    </button>
+</nav>
+
+<script src="/js/menu.js"></script>
+<script src="/js/paginacion.js"></script>
+<script src="/js/mostrar_formulario.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
